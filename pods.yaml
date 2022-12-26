@@ -1,0 +1,27 @@
+apiVersion : apps/v1 
+kind : Deployment
+metadata:
+  name: final 
+  
+spec:
+  selector:
+    matchLabels:
+      app: threepods
+      
+  replicas : 3
+  template:
+    metadata:
+      name : my-nginx-app
+      labels :
+        app: threepods
+    spec:      
+      containers :
+        - image : henidy/image
+          name: nginx-container 
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80  
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "1"
